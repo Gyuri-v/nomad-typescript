@@ -2,6 +2,6 @@
   "include": ["src"], // src의 모든 파일을 확인한다는 것을 의미
   "compilerOptions": {
     "outDir": "build", // js 파일이 생성될 디렉토리
-    "target": "ES3", // 컴파일될 js 버전 설정
+    "target": "ES6", // 컴파일될 js 버전 설정 -- ex6가 이상적
   }
 }
