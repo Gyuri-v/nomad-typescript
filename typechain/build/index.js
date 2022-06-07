@@ -1,48 +1,35 @@
-class Dict {
-    constructor() {
-        this.words = {};
-    }
-    add(word) {
-        if (this.words[word.term] === undefined) { // 주어진 단어가 아직 사전에 존재하지 않으면
-            this.words[word.term] = word.def;
-        }
-    }
-    def(term) {
-        return this.words[term];
-    }
-    update(word) {
-        if (this.words[word.term] !== undefined) {
-            this.words[word.term] = word.def;
-        }
-    }
-    del(term) {
-        if (this.words[term] !== undefined) {
-            delete this.words[term];
-        }
-    }
-    // static method - js
-    static hello() {
-        return "hello";
-    }
-}
-class Word {
+class Player {
+    // extends 대신 implements 을 사용하면 js 에는 interface는 사라지는데, 코드가 가벼워짐
+    // typescript가 위의 해당 property 를 가지도록 강제시켜줌
     constructor(
-    // public 이지만 변경불가능하게 하려면 readonly
-    term, def) {
-        this.term = term;
-        this.def = def;
+    // interface에서 설정한 property 들은 public 이어야만 함
+    firstName, lastName, health) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.health = health;
+    }
+    fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+    sayHi(name) {
+        return `Hello ${name}. I'm ${this.firstName}`;
     }
 }
-const kimchi = new Word("kimchi", "한국의 음식");
-const pizza = new Word("banana", "원숭이는 바나나를 좋아해");
-const dict = new Dict();
-dict.add(kimchi);
-dict.add(pizza);
-console.log(dict.def("kimchi"));
-console.log(dict.def("banana"));
-dict.update(new Word("kimchi", "한국인이 좋아하는 음식"));
-console.log(dict.def("kimchi"));
-console.log(dict.def("banana"));
-dict.del("banana");
-console.log(dict.def("pizza"));
-console.log(dict.def("banana"));
+// 함수에서 interface를 타입으로 쓸 수 있고, return 할 수도 있음
+// function makeUser(user: User){
+//   return "hi"
+// }
+function makeUser(user) {
+    return {
+        firstName: "nico",
+        lastName: "las",
+        fullName: () => "xx",
+        sayHi: (name) => "string"
+    };
+}
+makeUser({
+    firstName: "nico",
+    lastName: "las",
+    fullName: () => "xx",
+    sayHi: (name) => "string"
+});
